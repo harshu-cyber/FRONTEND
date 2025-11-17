@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Todo</title>
+</head>
+<style>
+    .container{
+        height: fit-content;
+        width: 300px;
+        background: aqua;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    *{
+        margin: 0%;
+        padding: auto;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    body{
+        display: flex;
+        height: 90vh;
+        justify-content: center;
+        align-items: center;
+        background-color: brown;
+        
+    }
+
+    #itemInput,button{
+        padding: 8px;
+        font-size: 16px;
+        display: auto;
+       
+
+    }
+    li{
+        list-style: none;
+        margin: 6px,0;
+
+    }
+    li span{
+        margin:0 10px;
+    }
+
+</style>
+<body>
+     <div class="container">
+  <h2>Add Your Item Below</h2>
+
+  <div class="inputbox"></div>
+
+  <input id="itemInput" type="text" placeholder="Add your item..." />
+  <button onclick="addItem()">Add</button>
+
+  <ul id="list"></ul>
+    </div>
+
+<script>
+function addItem() {
+  let input = document.getElementById("itemInput");
+  let text = input.value.trim();
+  if (!text) return;
+    alert("Invalid input");
+  
+
+  let li = document.createElement("li");
+
+ 
+  let cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.onchange = () => {
+    if (cb.checked) li.style.textDecoration = "line-through";
+    else li.style.textDecoration = "none";
+  };
+
+  let span = document.createElement("span");
+  span.innerText = text;
+
+  
+  let del = document.createElement("button");
+  del.innerText = "\u00d7";
+  del.onclick = () => li.remove();
+
+  li.appendChild(cb);
+  li.appendChild(span);
+  li.appendChild(del);
+
+  document.getElementById("list").appendChild(li);
+  input.value="";
+}
+</script>
+
+</body>
+</html>
